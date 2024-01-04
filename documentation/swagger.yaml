@@ -1,0 +1,218 @@
+openapi: 3.1.0
+info:
+  title: Note-Taking App API Documentation
+  version: 0.1.0
+  description: >
+    This API documentation outlines the endpoints for a simple CRUD application built with Express for managing notes. The application is documented using the Swagger specification.
+  contact:
+    name: Tariq
+    url: https://portfolio-d7646.web.app/
+    email: rasheedhadiq@gmail.com
+servers:
+  - url: http://localhost:8000
+tags:
+  - name: Notes
+    description: Operations related to notes
+
+security:
+  - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+paths:
+
+  /api/generate-token:
+    get:
+      summary: Generate JWT Token
+      tags: [Notes]
+      responses:
+        "200":
+          description: Successfully generated JWT token
+          content:
+            application/json:
+              example:
+                message: Token generated successfully
+                token: string
+        "500":
+          description: Internal Server Error - Failed to generate token
+
+  /api/create-note:
+    post:
+      summary: Create a New Note
+      tags: [Notes]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+              required:
+                - title
+                - content
+      responses:
+        "201":
+          description: Successfully created a new note
+          content:
+            application/json:
+              example:
+                message: Note added successfully
+                note:
+                  _id: string
+                  title: string
+                  content: string
+                  createdAt: string
+                  updatedAt: string
+        "400":
+          description: Bad Request - Invalid data format
+        "500":
+          description: Internal Server Error - Failed to add note
+
+  /api/retrieve-notes:
+    get:
+      summary: Retrieve All Notes
+      tags: [Notes]
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successfully retrieved notes
+          content:
+            application/json:
+              example:
+                message: Notes retrieved successfully
+                notes:
+                  - _id: string
+                    title: string
+                    content: string
+                    createdAt: string
+                    updatedAt: string
+                  # ... (more notes)
+        "404":
+          description: Not Found - No notes found
+        "500":
+          description: Internal Server Error - Failed to retrieve notes
+
+  /api/retrieve-note/{id}:
+    get:
+      summary: Retrieve a Specific Note by ID
+      tags: [Notes]
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the note to retrieve
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully retrieved the note
+          content:
+            application/json:
+              example:
+                message: Note retrieved successfully
+                note:
+                  _id: string
+                  title: string
+                  content: string
+                  createdAt: string
+                  updatedAt: string
+        "400":
+          description: Bad Request - Invalid note ID format
+        "404":
+          description: Not Found - Note not found
+        "500":
+          description: Internal Server Error - Failed to retrieve notes
+
+  /api/update-note/{id}:
+    put:
+      summary: Update a Specific Note by ID
+      tags: [Notes]
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the note to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+              required:
+                - title
+                - content
+      responses:
+        "200":
+          description: Successfully updated the note
+          content:
+            application/json:
+              example:
+                message: Note updated successfully
+                note:
+                  _id: string
+                  title: string
+                  content: string
+                  createdAt: string
+                  updatedAt: string
+        "400":
+          description: Bad Request - Title or content is required for the update or Invalid data format
+        "404":
+          description: Not Found - Note not found
+        "500":
+          description: Internal Server Error - Internal server error
+
+  /api/delete-note/{id}:
+    delete:
+      summary: Delete a Specific Note by ID
+      tags: [Notes]
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the note to delete
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully deleted the note
+          content:
+            application/json:
+              example:
+                message: Note deleted successfully
+                note:
+                  _id: string
+                  title: string
+                  content: string
+                  createdAt: string
+                  updatedAt: string
+        "400":
+          description: Bad Request - Invalid note ID format
+        "404":
+          description: Not Found - Note not found
+        "500":
+          description: Internal Server Error - Internal server error

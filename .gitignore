@@ -1,0 +1,35 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+
+# Environment variables
+.env
+
+# Output of 'npm pack'
+*.tgz
+
+# macOS files
+.DS_Store
+
+# Editor-specific files
+.vscode/
+.idea/
+
+# Dependencies and cache
+package-lock.json
+npm-debug.log
+yarn-error.log
+
+# Build output
+dist/
+build/
+
+# User-specific files
+*.sublime-workspace
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
