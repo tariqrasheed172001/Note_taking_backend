@@ -28,17 +28,25 @@ The Note Taking App is a simple CRUD (Create, Read, Update, Delete) API applicat
 
    ```bash
    git clone https://github.com/your-username/note-taking-app.git
-Install dependencies:
+   
+2. **Install dependencies:**
+
+   ```bash
   cd note-taking-app
   npm install
-Set up environment variables:
-  Create a .env file and add necessary configurations. ( PORT, MONGODB_URL, JWT_SECRET)
-Run the application:
-  npm start or npx nodemon
-## Usage
-To interact with the API, use tools like Swagger for clear documentation and testing.
 
-Visit http://localhost:8000/api-docs for the Swagger API documentation.
+3. **Set up environment variables:**
+   Create a .env file and add necessary configurations.
+   ```bash
+       PORT, MONGODB_URL, JWT_SECRET
+4. **Run the application:**
+  ```basg
+   npm start or npx nodemon
+
+## Usage
+   To interact with the API, use tools like Swagger for clear documentation and testing.
+   Visit http://localhost:8000/api-docs for the Swagger API documentation.
+
 ## Endpoints
   /api/create-note: Create a new note.
   /api/retrieve-notes: Retrieve all notes.
@@ -51,6 +59,7 @@ Visit http://localhost:8000/api-docs for the Swagger API documentation.
   Authentication is required for accessing endpoints. Obtain a JWT token using the /api/generate-token endpoint.
   Include the generated token in the Authorization header as follows:
     Bearer {your-token}
+
 ## Dependencies
   Express.js: Web application framework
   MongoDB: Database for storing notes
