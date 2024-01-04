@@ -36,11 +36,11 @@
      npm install
    
    3. **Set up environment variables:**
-      Create a .env file and add necessary configurations.
+      Create a .env file and add the necessary configurations.
       ```bash
           PORT, MONGODB_URL, JWT_SECRET
    4. **Run the application:**
-     ```basg
+     ```bash
       npm start or npx nodemon
 
 ## Usage
@@ -58,6 +58,7 @@
 ## Authentication
 - Authentication is required for accessing endpoints. Obtain a JWT token using the /api/generate-token endpoint.
 - Include the generated token in the Authorization header as follows:
+    ```bash
     Bearer {your-token}
 
 ## Testing
